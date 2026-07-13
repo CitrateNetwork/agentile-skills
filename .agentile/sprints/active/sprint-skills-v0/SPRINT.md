@@ -79,29 +79,33 @@ The method lives in the federation's heads and files; employees and fresh agent 
 
 | Field | Value |
 |-------|-------|
-| **Status** | `[ ] NOT STARTED` |
+| **Status** | `[x] COMPLETE` |
 | **Estimated effort** | M |
+| **Commit(s)** | see close note |
 
 **Scope:** CI that validates marketplace.json/plugin.json against schema, lints SKILL.md frontmatter (name matches dir, description contains a trigger phrase), and diffs vendored templates against the skeleton source. This is the repo's first ratchet.
 
 **Acceptance Criteria**
 
-- [ ] `marketplace.json` + both `plugin.json` files schema-validated in CI — data source: this repo's `.claude-plugin/` files
-- [ ] Frontmatter lint fails on any SKILL.md whose `name` ≠ directory name — data source: `plugins/**/skills/*/SKILL.md`
-- [ ] Template-drift tripwire fails when a vendored `*_TEMPLATE.md` differs from `../agentile/.agentile/templates/` — data source: both file sets
+- [x] `marketplace.json` + both `plugin.json` files schema-validated in CI — data source: this repo's `.claude-plugin/` files, via `scripts/validate.py` + `.github/workflows/validate.yml`
+- [x] Frontmatter lint fails on any SKILL.md whose `name` ≠ directory name — data source: `plugins/**/skills/*/SKILL.md`; seen red 2026-07-12 (seeded `retro`→`retrospective` mismatch, caught)
+- [x] Template-drift tripwire fails when a vendored `*_TEMPLATE.md` differs from `../agentile/.agentile/templates/` — data source: `templates.lock` (sha256, works in CI) + byte-diff vs skeleton (local); seen red 2026-07-12 (seeded in-place edit, caught by both layers)
+- [x] Rule-12 frontmatter lint on all `.agentile/**/*.md` — seen red 2026-07-12 (seeded missing `branch` field, caught)
+
+**Tests added:** `scripts/validate.py` — 154 checks; canonical command `python3 scripts/validate.py`; each tripwire class demonstrated red then restored green.
 
 ### WP-4: Tier-1 registration
 
 | Field | Value |
 |-------|-------|
-| **Status** | `[~] IN PROGRESS` |
+| **Status** | `[x] COMPLETE` |
 | **Estimated effort** | S |
 
 **Acceptance Criteria**
 
-- [ ] `[repos.agentile-skills]` in `citrate-federation/manifest.toml` with initial-commit rev (edit staged; commit pending human review)
-- [ ] Row in `onboarding/FEDERATION_MAP.md` (edit staged; commit pending human review)
-- [ ] GitHub remote created and pushed (pending — needs owner: repo creation under CitrateNetwork or saulbuilds)
+- [x] `[repos.agentile-skills]` in `citrate-federation/manifest.toml` with initial-commit rev — committed `4d1b677` on `planset/core-beta-wiring`, pushed (owner-reviewed 2026-07-12; lands on main via that branch's merge)
+- [x] Row in `onboarding/FEDERATION_MAP.md` — committed `8b67eb5` on citrate-labs `main`, pushed
+- [x] GitHub remote created and pushed — `https://github.com/CitrateNetwork/agentile-skills` (private, Rule 13), `main` at `cad16b4`
 
 ## Dependencies
 
@@ -119,6 +123,7 @@ The method lives in the federation's heads and files; employees and fresh agent 
 ## Daily updates
 
 - 2026-07-12 — kickoff. WP-1 and WP-2 written and closed in one session (13 skills, 7 vendored templates). WP-4 registration edits staged in citrate-federation + onboarding, uncommitted pending review. WP-3 (validation harness) is the open work: the repo currently has zero tripwires, which is an honest violation of its own method until closed.
+- 2026-07-12 (later) — owner reviewed. WP-4 closed: manifest commit `4d1b677`, map commit `8b67eb5`, repo pushed to CitrateNetwork/agentile-skills. WP-3 closed: `scripts/validate.py` (154 checks) + `validate.yml` CI + `templates.lock`; all three tripwire classes seeded red and restored green. Awaiting first CI run for sprint close.
 
 ## Notes
 

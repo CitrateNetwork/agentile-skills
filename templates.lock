@@ -1,0 +1,9 @@
+# sha256 of vendored templates at vendor time (source: agentile/.agentile/templates)
+# regenerate ONLY after re-vendoring from the skeleton: shasum -a 256 plugins/*/skills/*/*_TEMPLATE.md
+5c385a379c542a880cfbb06589609fe5993d1b2815d72ce6f27027354f2d5179  plugins/agentile/skills/agentile/DAILY_TEMPLATE.md
+4d65c870bc1db4cb79ee8b04a2177d03685cfc0f212739f257197ad8a3873f09  plugins/agentile/skills/agentile/SPRINT_TEMPLATE.md
+1d8c9ef56a008a90802c648ab9cdc8b66c15004533f87c7102ecf1bef002e9be  plugins/agentile/skills/case-study/CASE_STUDY_TEMPLATE.md
+72ae501baac061edb2aec28ef0e793d58c19f38bf1523434e3fd1f61f1150cfb  plugins/agentile/skills/essay/ESSAY_TEMPLATE.md
+62aa9192e698f515a7d7acdde28f813417a1a7d759ea1f3922b39a9fda165665  plugins/agentile/skills/journal/JOURNAL_TEMPLATE.md
+1bfe58998e9b48e845390b657f8aaec546e1de7db4f58e4f1b530c48988faef9  plugins/agentile/skills/planset/ADR_TEMPLATE.md
+24370a59f5536accbe10eaa4de46435f5189bd92ffa3488f4ba46a2bd4445eb7  plugins/agentile/skills/retro/RETRO_TEMPLATE.md
