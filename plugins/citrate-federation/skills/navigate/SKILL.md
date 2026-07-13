@@ -50,7 +50,7 @@ Tier comes from each repo's `AGENT_ENTRY.md` frontmatter (and the manifest). **T
 |---|---|
 | Current SHA pins across repos | `citrate-federation/manifest.toml` |
 | What sprint is active now | `citrate-federation/agentile/CURRENT.md` |
-| The 13 rules, in full | `citrate-federation/agentile/rules/CORE_RULES.md` (reading copy: `citrate-labs/docs/AGENTILE_RULES.md`) |
+| The 13 rules, in full | `citrate-federation/.agentile/rules/CORE_RULES.md` (reading copy: `citrate-labs/docs/AGENTILE_RULES.md`) |
 | Repo inventory + tiers | `citrate-labs/onboarding/FEDERATION_MAP.md` |
 | A repo's hard rules | `<repo>/CLAUDE.md` |
 | A repo's tier + read-order | `<repo>/.agentile/AGENT_ENTRY.md` |
@@ -64,7 +64,7 @@ Tier comes from each repo's `AGENT_ENTRY.md` frontmatter (and the manifest). **T
 ## The repo landscape (orient by concern)
 
 - **Chain & node:** `citrate-chain` (T1 — the L1: GhostDAG, LVM/REVM, contracts, Halo2), `citrate-node-agent`, `citrate-bundler`, `citrate-simulation`
-- **Identity & wallets:** `citrate-identity` (auth.citrate.ai OIDC), `citrate-native` (T1 desktop), `citrate-wallet-extension` (T1), `citrate-core` (T1 full-node desktop house)
+- **Identity & wallets:** `citrate-identity` (auth.citrate.ai OIDC), `citrate-native` (T1 desktop), `citrate-wallet-extension` (T1), `citrate-core` (T1 full-node desktop client + app launcher)
 - **Compute & agents:** `citrate-inference-gateway`, `citrate-compute-pool`, `citrate-agent-runtime`, `nist-agent`, `citrate-studio` (all T1)
 - **Memory & comms:** `citrate-memories` ("git for agents" DAG, MCP-served), `citrate-comms` (T1 E2E workspace)
 - **Apps & surfaces:** `citrate-explorer` (CitrateScan), `citrate-dashboard` (T1), `citrate-buyer-webapp` (T1), `citrate-alf-web` (T1 ALF portal), `citrate-boeing-shell` (T1), `citrate-learning-center` (T1), `citrate-landing` (T2), `citrate-dataroom` (T1)
@@ -77,7 +77,7 @@ When unsure which repo owns a concern, check FEDERATION_MAP.md before grepping t
 ## Hard safety facts
 
 - Never `git pull` a pinned consumer to "update" it — fetch the exact object and detach onto it; the pin is the truth (fail closed).
-- Remotes are hard-pinned fully-qualified GitHub URLs (`github.com:CitrateNetwork/<repo>.git`) — never SSH aliases; an unpinned alias is an indirection an attacker can repoint. (Individual machines may use HTTPS rewrites; the manifest pins are what matter.)
+- Remotes are hard-pinned fully-qualified GitHub URLs (`git@github.com:CitrateNetwork/<repo>.git` or `https://github.com/CitrateNetwork/<repo>.git`) — never SSH aliases; an unpinned alias is an indirection an attacker can repoint. (Individual machines may use HTTPS rewrites; the manifest pins are what matter.)
 - Force-push, branch deletion on main, and secret rotation require explicit human approval first (Rule 10).
 - `citrate-journals` has **no remote** — never assume it is backed up remotely; never push it anywhere.
 

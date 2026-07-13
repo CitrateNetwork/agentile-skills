@@ -18,7 +18,7 @@ The Agentile methodology packaged as a Claude Code plugin marketplace (`.claude-
 1. `CLAUDE.md` — this repo's hard rules (vendored templates, version bumps, no method drift)
 2. `plugins/agentile/skills/agentile/SKILL.md` — the method itself, mastered by reading it
 3. `.agentile/sprints/active/` — what's in flight
-4. Canonical upstream: `../citrate-federation/agentile/rules/CORE_RULES.md`, `../agentile/.agentile/templates/`
+4. Canonical upstream: `../citrate-federation/.agentile/rules/CORE_RULES.md`, `../agentile/.agentile/templates/`
 
 ## What lives here
 

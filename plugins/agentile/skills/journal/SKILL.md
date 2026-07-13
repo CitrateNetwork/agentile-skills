@@ -1,6 +1,6 @@
 ---
 name: journal
-description: Writing an Agentile journal entry — the short-form session reflection. Use at sprint boundaries (kickoff, pivot, close — minimum one per sprint), after any session that produced a non-obvious learning, or when someone says "journal this". Not for status updates; those go in the sprint file.
+description: Writing an Agentile journal entry — the short-form session reflection. Use at sprint boundaries (kickoff, pivot, close — minimum one per sprint), after any session that produced a non-obvious learning, or when someone says "journal this". Not for status updates; those go in the daily log (DAILY.md or the sprint file's daily-updates section).
 metadata:
   version: "0.1.0"
 ---
@@ -19,7 +19,7 @@ Template: `JOURNAL_TEMPLATE.md` in this skill's directory.
 .agentile/docs/journals/YYYY-MM-DDTHHMM_<slug>.md
 ```
 
-Filename timestamp matches the frontmatter `created` to the minute. Rule-12 frontmatter, plus `sprint:` when the entry belongs to one.
+Filename timestamp matches the frontmatter `created` to the minute. Rule-12 frontmatter (`created`, `branch`, `author`, `status` — defined in the `agentile` master skill), plus `sprint:` when the entry belongs to one.
 
 ## The dek test
 
@@ -29,7 +29,7 @@ Every journal opens with a one-line dek: the single sentence that captures why t
 
 - **Context** (2–3 sentences): sprint, branch, the immediate problem. Future readers won't have your context — give them just enough.
 - **What happened**: linear narrative, 3–6 paragraphs. Show the work, not just the conclusion — the dead ends are often the payload.
-- **What I learned**: the durable takeaway that should change how the next session approaches similar work. If there's no learning, this isn't a journal — it's a status update, and status belongs in the sprint file.
+- **What I learned**: the durable takeaway that should change how the next session approaches similar work. If there's no learning, this isn't a journal — it's a status update, and status belongs in the daily log (DAILY.md or the sprint file's daily-updates section).
 - **What I'd do differently**: the counterfactual. "Nothing — exactly this, again" is a legitimate answer, but say it honestly, not lazily.
 - **Open questions**: surfaced but unresolved. These seed the next sprint's risk table.
 - **Pointers**: sprint path, commit hashes, related journal/essay.

@@ -11,7 +11,7 @@ A spec's job is to make "done" checkable before work starts. Under Agentile, spe
 
 ## Where specs live
 
-- **`.agentile/PRODUCT_SPEC.md`** — what the finished product does. Tier-1 authority: when a feature idea conflicts with it, either the spec is amended (ADR) or the feature bends.
+- **`.agentile/PRODUCT_SPEC.md`** — what the finished product does. Authoritative for product behavior (canonical constants still live in CONFIG.md): when a feature idea conflicts with it, either the spec is amended (ADR) or the feature bends.
 - **Feature specs** — either a section added to PRODUCT_SPEC.md, a planset doc (`04_FEATURES_BDD.md`), or a WP scope block in the sprint file, depending on size. One home per feature (Rule 9); link from everywhere else.
 
 Every spec doc carries Rule-12 frontmatter (`created`, `branch`, `author`, `status`).

@@ -36,7 +36,7 @@ These are non-negotiable. Humans and agents follow identical rules.
 | 12 | **Cross-repo deps follow the drift map** | Declare the `[[drift]]` entry first, then add the dependency. |
 | 13 | **Visibility flips need sign-off** | PRIVATE → PUBLIC on a Tier-1 repo requires lead approval and an ADR. |
 
-(Rules 6, 8, 11–13 are federation-flavored; in a standalone repo, keep their spirit: benchmark what's hot, never unwrap in shipped UI, keep one canonical pin registry.)
+(Rules 6, 8, 11–13 are federation-flavored; in a standalone repo, keep their spirit: benchmark what's hot, never unwrap in shipped UI, keep one canonical pin registry. Numbering note: in the pre-split archive, rule 5 was numbered "Rule 12" and rule 7 was "Rule 11" — the corpus and the vendored templates still use those names. "Rule-12 frontmatter" means rule 5 here; SPRINT_TEMPLATE.md's "Rule 11" means data-source tracing, not the manifest rule.)
 
 ## The artifact map
 
@@ -46,12 +46,12 @@ These are non-negotiable. Humans and agents follow identical rules.
 ├── CONFIG.md               # canonical constants (highest doc authority)
 ├── PRODUCT_SPEC.md         # what the finished product does
 ├── rules/CORE_RULES.md     # the rules above
-├── planset/                # program-level plans (00–08 numbered docs, gates.yaml)
+├── planset/                # program-level plans (00–NN numbered docs, gates.yaml)
 ├── sprints/
 │   ├── active/<slug>/      # SPRINT.md, DAILY.md, RETRO.md (at close)
 │   ├── backlog/
 │   └── completed/<YYYY-MM>/  # immutable after close
-├── adrs/                   # ADR-<YYYY-MM-DD>-<slug>.md
+├── adrs/                   # cross-cutting: ADR-<YYYY-MM-DD>-<slug>.md (planset-scoped: ADR-<NNN>-<slug>.md in planset/adr/, per the vendored template)
 ├── coverage/BASELINE.md    # ratchet baselines (tests, specs, tripwires, frontmatter)
 ├── formal/                 # TLA+ specs + TLC results, where applicable
 └── docs/
@@ -62,7 +62,7 @@ These are non-negotiable. Humans and agents follow identical rules.
 
 ## The sprint lifecycle
 
-1. **Kickoff.** Copy `SPRINT_TEMPLATE.md` (in this skill's directory) to `.agentile/sprints/active/<slug>/SPRINT.md`. Fill goal, deliverables, WPs. Snapshot the test baseline (all four ratchet axes). Register the sprint in the project's CURRENT.md if one exists.
+1. **Kickoff.** Copy `SPRINT_TEMPLATE.md` (in this skill's directory) to `.agentile/sprints/active/YYYY-MM-DD-sprint-<track>-<id>-<slug>/SPRINT.md` (naming per the template header; repos with an established shorter `sprint-<slug>` convention keep it — match the repo). Fill goal, deliverables, WPs. Snapshot the test baseline (all four ratchet axes). Register the sprint in the project's CURRENT.md if one exists.
 2. **Method order per WP:** TLA+ (if state-machine touching) → BDD/Gherkin → **failing test + tripwire** → code → refactor → adversarial check → journal entry. If a step doesn't apply, write down why in the WP block.
 3. **Daily updates.** Append one dated line (or a DAILY.md block) per work day. Append-only.
 4. **Decisions become ADRs** the moment they surface; link them from the sprint file.

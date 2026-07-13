@@ -38,4 +38,4 @@ Write WP-3 (the validation harness) *first*, red-test-style. The name/directory 
 ## Pointers
 
 - Sprint: `.agentile/sprints/active/sprint-skills-v0/SPRINT.md`
-- Canon extracted from: `citrate-federation/agentile/rules/CORE_RULES.md`, `docs/AGENTILE_WORKFLOW.md`, `agentile/.agentile/templates/`, `docs/essays/agentile-history/`
+- Canon extracted from: `citrate-federation/.agentile/rules/CORE_RULES.md` (path corrected in the S1 review pass), `docs/AGENTILE_WORKFLOW.md`, `agentile/.agentile/templates/`, `docs/essays/agentile-history/`

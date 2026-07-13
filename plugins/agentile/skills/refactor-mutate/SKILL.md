@@ -24,7 +24,7 @@ A test that never fails is indistinguishable from no test. Mutation testing answ
 **Procedure:**
 
 1. Run a mutation tool over the WP's touched code — `cargo-mutants` (Rust), Stryker (JS/TS), `mutmut` (Python), or the project's configured tool. No tool available? Do it manually: flip a comparison, off-by-one a boundary, invert a branch, return a constant — and run the suite.
-2. **Every surviving mutant is a verdict:** either dead code (delete it — as its own commit) or a coverage gap (write the killing test — red-first, watch it fail against the mutant).
+2. **Every surviving mutant is a verdict:** dead code (delete it — as its own commit), a coverage gap (write the killing test — red-first, watch it fail against the mutant), or an accepted survivor (justified in writing, step 4).
 3. Prioritize mutants in: money paths, authz checks, state transitions, parsers, arithmetic. A surviving mutant in an error-message string is noise; a surviving mutant in a balance check is a finding.
 4. Record the campaign in the sprint file's Notes: mutants generated / killed / surviving-and-why. Surviving mutants you chose not to kill get a written reason.
 
@@ -45,11 +45,11 @@ Tests that pin expected values captured from a real system (addresses, hashes, g
 
 ## Exit checklist
 
-- [ ] Suite green, zero test-assertion edits during refactor (or ADR'd)
+- [ ] Suite green; refactor commits contain zero test-assertion edits (assertion fixes and tightenings landed as their own commits, per rule 2 and "Mutating the tests themselves")
 - [ ] Test count ≥ baseline
 - [ ] Mutation campaign run on touched code; surviving mutants killed or justified in writing
 - [ ] Weak assertions tightened; adversarial variants added where the mutation run exposed gaps
-- [ ] Pinned vectors re-earned from source, never regenerated from the code under test
+- [ ] Any pinned vectors that changed were re-earned from the real source (never regenerated from the code under test), with where/when recorded in the test comment
 - [ ] Benchmarks run and committed if performance-critical code was touched
 
 Then proceed to `agentile:document-pass`.

@@ -76,4 +76,4 @@ Caveats ship *alongside* numbers, not after. "1,200 TPS (3-node LAN testnet, unv
 - [ ] Public claims graded; STALE/UNSUPPORTED/OVERSTATED ones fixed
 - [ ] CURRENT.md / status surface updated
 
-At sprint close, this pass hands off to `agentile:retro` and `agentile:journal`.
+At sprint close, this pass hands off to `agentile:retro`, whose close ceremony sequences the journal and the essay/case-study triggers.

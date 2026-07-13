@@ -23,16 +23,16 @@ The single most important rule. Essays are historical context, not operating rul
 .agentile/docs/essays/YYYY-MM-DDTHHMM_<slug>.md
 ```
 
-Rule-12 frontmatter; filename timestamp matches `created` to the minute.
+Rule-12 frontmatter (`created`, `branch`, `author`, `status`); filename timestamp matches `created` to the minute.
 
 ## Structure that works
 
 1. **Title** — declarative and short. The title takes a position ("The Mess Became a Method", "CI/CD Before Code").
 2. **Epigraph** — one sentence: the claim the essay defends.
-3. **Anchor first, never abstract.** Open with a specific artifact — a commit, a defect, a benchmark number, a line from a retro. The principle is *extracted* from the anchor, not decorated with it afterward.
+3. **Anchor first, never abstract.** Open with a specific artifact — a commit, a defect, a benchmark number, a line from a retro. The principle is *extracted* from the anchor, not decorated with it afterward. (In the template this is the opening of the `Frame` section: anchor first, then the frame widens.)
 4. **Named sections carry the argument.** Section titles do load-bearing work ("Drift is cheap to introduce, expensive to undo"), not numbering.
 5. **Problem → principle → reification.** Show the failure, extract the rule, show the rule generalizing beyond the incident.
-6. **"The honest reading" section.** Name the limits: what's aspirational vs. enforced, what the argument does not prove, which bets are still open. This section is what separates an essay from marketing. Never skip it.
+6. **"The honest reading" section.** Name the limits: what's aspirational vs. enforced, what the argument does not prove, which bets are still open. This section is what separates an essay from marketing. Never skip it — any name that reads as a limits section counts. The vendored template doesn't scaffold it; add it as a named section before "What this implies".
 7. **What this implies / does NOT imply.** Concrete consequences, flagged speculative vs. actionable — and the most likely misreadings, named so future readers can't mis-cite you.
 8. **References** — the journal it grew out of, the sprint, the incident, prior essays.
 

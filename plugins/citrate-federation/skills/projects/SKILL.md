@@ -11,7 +11,7 @@ Every project in the federation is an Agentile project (use the `agentile` plugi
 
 ## Starting work
 
-1. **Find the owning repo** (`citrate-federation:navigate`). One home per piece of work (Rule 9) — if the work spans repos, it still has one *coordinating* sprint; other repos get linked WPs, not clone sprints.
+1. **Find the owning repo** (`citrate-federation:navigate`). One source of truth per topic (Rule 9), applied to work: one *coordinating* sprint per piece of work — if it spans repos, the other repos get linked WPs, not clone sprints.
 2. **Check what's already in flight:** `citrate-federation/agentile/CURRENT.md` + the repo's `.agentile/sprints/active/`. Don't open a second sprint for work an active one covers.
 3. **Kick off per Agentile** (`agentile` master skill): sprint directory, baseline snapshot, WPs with data-sourced criteria.
 4. **Register it:** add/update the row in `CURRENT.md` so the federation-level view stays true.
@@ -28,7 +28,7 @@ Every project in the federation is an Agentile project (use the `agentile` plugi
    consumer = "citrate-native"
    dep_repo = "citrate-chain"
    file = "Cargo.toml"
-   pin_field = "rev"
+   pin_field = "citrate-wallet-core"   # the dependency name in the consumer's file whose rev pin drift-check verifies
    ```
 2. **Then** add the dependency to Cargo.toml / package.json, pinned to the manifest's `rev` for that repo.
 
@@ -43,7 +43,7 @@ Never "fix" drift by pulling a consumer to a branch tip — fetch the exact pinn
 
 ## Handoffs (session-to-session and human work orders)
 
-Handoffs live in `citrate-labs/handoffs/`, named `<TOPIC>_<YYYY-MM-DD>.md`, with Rule-12 frontmatter plus `audience:`. Structure that works (see `ALF_PORTAL_DEVOPS_HANDOFF_2026-07-07.md` as the exemplar):
+Handoffs live in `citrate-labs/handoffs/`, named `<TOPIC>_<YYYY-MM-DD>.md`, with Rule-12 frontmatter (canonical Rule 5) plus `audience:`. Structure that works (see `ALF_PORTAL_DEVOPS_HANDOFF_2026-07-07.md` as the exemplar):
 
 1. **One-line ask** — what the recipient is being asked to stand up, in one sentence.
 2. **Blockers table** — which downstream work each task gates (`D-1 blocks ALF-S1 …`).
@@ -67,7 +67,7 @@ For work too big for one context, dispatch lanes (exemplar: `handoffs/AGENT_HAND
 - [ ] Create the repo under `citrate-labs/` (independent git repo) with remote `github.com:CitrateNetwork/<name>.git`
 - [ ] Scaffold `.agentile/` (the `agentile` skeleton repo's `bootstrap.sh` does this): `AGENT_ENTRY.md` with tier, `CLAUDE.md`, sprints/, templates
 - [ ] Decide the tier honestly — T1 if it touches consensus, contracts, money, keys, identity, or partner-facing surfaces
-- [ ] Register in `citrate-federation/manifest.toml`: `[repos.<name>]` with tier, role, visibility, `rev` = initial commit SHA, `default_branch`, consumes/consumed_by, `audit_tier`
+- [ ] Register in `citrate-federation/manifest.toml`: `[repos.<name>]` with tier, role, visibility, `rev` = initial commit SHA, `default_branch`, `consumes_repos`/`consumed_by`, `publishes`, `audit_tier`
 - [ ] Add the row to `citrate-labs/onboarding/FEDERATION_MAP.md` in the right concern group
 - [ ] Visibility starts `private`; PRIVATE→PUBLIC on T1 requires federation-lead sign-off + ADR (Rule 13)
 

@@ -40,7 +40,7 @@ branch: main
 author: <human> + <agent model>
 status: planset (Stage-1 draft | Stage-2, red-teamed)
 planset: <program-name>
-code: <SPRINT-CODE-PREFIX>      # e.g. MOBILE-S0
+code: <SPRINT-CODE-PREFIX>      # e.g. MOBILE (sprints become MOBILE-S0, MOBILE-S1, …)
 repo: <repo(s) affected>
 red_teamed: <date, once done>
 companions: <sibling docs>
@@ -92,7 +92,7 @@ gates:
     reviewers: [Name (role)]
 ```
 
-Rules: a criterion flips to `met: true` only with an `evidence` path that exists, and a `note` citing the proof (test run, TLC log, commit). Gates are append-hostile — once `met`, the evidence stays.
+Rules: a criterion flips to `met: true` only with an `evidence` path that exists, and a `note` citing the proof (test run, TLC log, commit). Gates ratchet: once a criterion is `met: true` with evidence, it never flips back and the evidence stays.
 
 ## Sprint breakdown (05_SPRINTS_AND_WPS)
 

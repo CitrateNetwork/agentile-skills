@@ -18,7 +18,7 @@ Every WP is red-test-first: **reproduce, then fix, then green.** The failing tes
    - For a bug: the test that reproduces the defect. For a security finding: reproduce the forgery/exploit as a test.
    - Run it. **Watch it fail, and read the failure.** A test that fails for the wrong reason (compile error, missing fixture) is not red; it's broken. Red means: fails precisely because the behavior doesn't exist yet.
 
-3. **Land the tripwire with the test** if the test plan called for one — the class-level CI gate, not just the instance-level regression test.
+3. **Land the tripwire with the test** if the test plan called for one — the class-level CI gate, not just the instance-level regression test. CRITICAL/HIGH bug fixes always get one, test plan or not (see `agentile:test-plan`).
 
 4. **Implement the smallest change that makes it green.** Constraints while writing:
    - No mocks/stubs/TODOs in production paths (Rule 1). Test doubles behind `#[cfg(test)]` or test-only flags.
@@ -28,7 +28,7 @@ Every WP is red-test-first: **reproduce, then fix, then green.** The failing tes
 
 5. **Green, then verify behavior — not shape.** *Compiles* is a claim about syntax. *Tests pass* is a claim about the code's shape under your fixtures. If the WP touches a live system (chain, service, real DB), exercise the live path before claiming complete. The gap between "tested" and "live works" is where demo-day bugs live.
 
-6. **Run the full suite, compare to baseline.** Count must be ≥ baseline (Rule 2). If a test had to be removed or rewritten, that's an ADR, written now, not a footnote later.
+6. **Run the full suite, compare to baseline.** Count must be ≥ baseline (Rule 2). If a test had to be removed, that's an ADR, written now, not a footnote later; a rewritten assertion follows the assertion-edit rule in `agentile:refactor-mutate` (its own commit, stating why).
 
 ## Close-with-proof
 

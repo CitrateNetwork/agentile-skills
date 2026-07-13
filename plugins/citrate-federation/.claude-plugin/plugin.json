@@ -1,6 +1,6 @@
 {
   "name": "citrate-federation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Navigation and project-handling skills for the CitrateNetwork federated repositories: orientation sequence, truth hierarchy, manifest/drift discipline, handoffs, and parallel agent dispatch.",
   "author": {
     "name": "Citrate Network",

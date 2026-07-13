@@ -15,11 +15,11 @@ The retro is written at sprint close, alongside the final SPRINT.md update, usin
 
 1. Final SPRINT.md update: all WP blocks resolved (`[x]` or explicitly carried forward), exit criteria checked, close note written with the *actual* outcome — deltas from plan named, not smoothed over.
 2. Verify exit criteria against live evidence: CI green on a run you can point to, ratchet counts ≥ baseline, pins/manifests updated where applicable.
-3. Write `RETRO.md` (this skill).
+3. Write `RETRO.md` in the sprint's active directory using the template (this skill); step 5 moves it to `completed/` with the rest of the sprint.
 4. Write the sprint journal (`agentile:journal`) — and consider the essay and case-study triggers (`agentile:essay`, `agentile:case-study`).
 5. `git mv` the sprint directory to `.agentile/sprints/completed/<YYYY-MM>/`, set frontmatter `status: archived`, update CURRENT.md. Completed sprints are immutable except dated errata.
 
-"Code done" without steps 3–5 is not closed.
+"Code done" without the full ceremony — especially steps 3–5 — is not closed.
 
 ## Writing each section well
 
@@ -50,3 +50,5 @@ The retro is written at sprint close, alongside the final SPRINT.md update, usin
 - [ ] Every carry-forward has a destination and reason
 - [ ] Action items have owners
 - [ ] Journal for the sprint exists; essay/case-study triggers consciously evaluated (write "considered, none warranted" in Notes if declined)
+- [ ] Exit criteria verified against live evidence (CI run link, ratchet counts ≥ baseline)
+- [ ] Sprint directory moved to `.agentile/sprints/completed/<YYYY-MM>/`, frontmatter `status: archived`, CURRENT.md updated

@@ -50,7 +50,7 @@ feature-spec → planset (if program-sized) → test-plan
 
 ## Repo status
 
-Tier-1 repo in the CitrateNetwork federation. Canonical method source: `citrate-federation/agentile/rules/CORE_RULES.md` and the `agentile` skeleton repo — this marketplace is the distribution surface; when they diverge, the federation rules win and this repo gets a version bump.
+Tier-1 repo in the CitrateNetwork federation. Canonical method source: `citrate-federation/.agentile/rules/CORE_RULES.md` and the `agentile` skeleton repo — this marketplace is the distribution surface; when they diverge, the federation rules win and this repo gets a version bump.
 
 ## License
 
