@@ -1,6 +1,6 @@
 {
   "name": "agentile",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The Agentile methodology as skills: feature specs, plansets, test planning, red-green work packages, refactor + mutation testing, documentation passes, retrospectives, journals, essays, and case studies.",
   "author": {
     "name": "Citrate Network",

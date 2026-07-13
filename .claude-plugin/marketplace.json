@@ -2,16 +2,16 @@
   "name": "agentile-skills",
   "owner": {
     "name": "Citrate Network",
-    "email": "saulweiloveman@gmail.com"
+    "email": "larry@citrate.ai"
   },
   "metadata": {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "The Agentile methodology as Claude Code skills: spec-first, red-test-first, honesty-enforced agent development, plus navigation skills for the CitrateNetwork federation."
   },
   "plugins": [
     {
       "name": "agentile",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "description": "The Agentile methodology: feature specs, plansets, test planning, red-green work packages, refactor + mutation testing, documentation passes, retrospectives, journals, essays, and case studies.",
       "author": {
         "name": "Citrate Network",
