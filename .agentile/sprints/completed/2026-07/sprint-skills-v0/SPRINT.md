@@ -2,7 +2,7 @@
 created: 2026-07-12T00:00:00Z
 branch: main
 author: Saul Loveman + Claude Fable 5
-status: active
+status: archived
 sprint: SKILLS-S0
 ---
 
@@ -17,8 +17,8 @@ sprint: SKILLS-S0
 | **Goal** | Any agent that installs the `agentile` plugin can run the full method (spec → planset → test-plan → red-green → refactor-mutate → document → retro → journal/essay/case-study) without reading the federation. |
 | **Branch** | `main` |
 | **Start Date** | 2026-07-12 |
-| **End Date (target)** | 2026-07-19 |
-| **Status** | `IN PROGRESS` |
+| **End Date (target)** | 2026-07-19 (closed early: 2026-07-12) |
+| **Status** | `COMPLETE` |
 | **Planset** | — (single-sprint scope; planset not warranted) |
 | **Predecessors** | `agentile` skeleton repo (templates), FWA remediation (rules canon) |
 
@@ -128,3 +128,7 @@ The method lives in the federation's heads and files; employees and fresh agent 
 ## Notes
 
 The repo ships with tests=0, tripwires=0 — the method says that's not done, and the sprint file says so out loud rather than hiding it. WP-3 is the difference between "packaged the method" and "practices it."
+
+## Close note (2026-07-12)
+
+Goal met, one day, all 4 WPs closed with proof. Actual outcome matched plan with two deltas: the remote landed under `CitrateNetwork` (not `saulbuilds` as the initial README claimed — fixed `cad16b4`), and the manifest registration rode `planset/core-beta-wiring` because that branch was checked out in citrate-federation (lands on main via its merge). First CI run green (run 29216243206, 154/154 checks). See RETRO.md.
