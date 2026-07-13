@@ -33,7 +33,7 @@ Read only as deep as the task needs — the sequence exists so you can stop earl
 1. **The code and its tests** — a passing test beats prose, always
 2. **`<repo>/CLAUDE.md`** — repo hard rules (no mocks, name your data sources)
 3. **`<repo>/.agentile/AGENT_ENTRY.md`** — read-first + tier
-4. **`citrate-federation/manifest.toml` + `agentile/CURRENT.md`** — cross-repo pins and live status
+4. **`citrate-federation/manifest.toml` + `citrate-federation/agentile/CURRENT.md`** — cross-repo pins and live status
 5. **Active sprint files** — in-flight work with daily updates
 6. **Plansets** — the plan and acceptance criteria
 7. **`handoffs/*.md`** — session-to-session context. Useful but **DATED** — verify before relying

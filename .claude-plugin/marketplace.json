@@ -21,7 +21,7 @@
     },
     {
       "name": "citrate-federation",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "description": "Navigating the CitrateNetwork federated repositories: orientation, truth hierarchy, manifest/drift discipline, and running projects across the federation.",
       "author": {
         "name": "Citrate Network",

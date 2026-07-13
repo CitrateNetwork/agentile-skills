@@ -10,6 +10,8 @@ Checks, in order:
   4. Vendored-template integrity vs templates.lock (catches in-place edits)
   5. Vendored-template drift vs the agentile skeleton (local checkouts only;
      skipped in CI where the skeleton is not present)
+  6. Cited workspace paths in citrate-federation plugin skills exist
+     (local checkouts only; skipped in CI where the workspace is not present)
 
 Exit 0 = all checks pass. Exit 1 = at least one failure.
 Every individual assertion is one counted check; the final count is the
@@ -155,6 +157,36 @@ if SKELETON_TEMPLATES.is_dir():
             )
 else:
     print("note: agentile skeleton not found; drift-vs-skeleton checks skipped (CI mode)")
+
+# ── 6. cited workspace paths in federation-plugin skills (local only) ─
+# Backticked tokens containing '/' in citrate-federation SKILL.md files are
+# treated as workspace-path citations and must exist under the workspace root
+# (the parent directory holding citrate-labs' repos). Tokens with placeholders
+# (<...>), globs, URLs, or generic per-repo .agentile/ paths are skipped.
+WORKSPACE = ROOT.parent
+CITED_RE = re.compile(r"`([^`\s]+/[^`\s]*)")
+
+if (WORKSPACE / "citrate-federation").is_dir():
+    for sf in sorted(ROOT.glob("plugins/citrate-federation/skills/*/SKILL.md")):
+        rel = sf.relative_to(ROOT)
+        seen = set()
+        for m in CITED_RE.finditer(sf.read_text(encoding="utf-8")):
+            cand = m.group(1).rstrip(".,;:")
+            if cand in seen:
+                continue
+            seen.add(cand)
+            if any(t in cand for t in ("<", ">", "*", "://")):
+                continue
+            if cand.startswith((".agentile/", "git@", "~")):
+                continue
+            p = cand[len("citrate-labs/"):] if cand.startswith("citrate-labs/") else cand
+            check(
+                (WORKSPACE / p).exists(),
+                f"{rel}: cited path exists: {cand}",
+                f"not found under {WORKSPACE}",
+            )
+else:
+    print("note: federation workspace not found; cited-path checks skipped (CI mode)")
 
 # ── report ──────────────────────────────────────────────────────────
 failures = [r for r in results if not r[0]]
