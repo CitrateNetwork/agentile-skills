@@ -12,6 +12,8 @@ Checks, in order:
      skipped in CI where the skeleton is not present)
   6. Cited workspace paths in citrate-federation plugin skills exist
      (local checkouts only; skipped in CI where the workspace is not present)
+  7. Sprint-close completeness: every completed sprint has RETRO.md and a
+     journal whose frontmatter `sprint:` matches the sprint's ID
 
 Exit 0 = all checks pass. Exit 1 = at least one failure.
 Every individual assertion is one counted check; the final count is the
@@ -187,6 +189,29 @@ if (WORKSPACE / "citrate-federation").is_dir():
             )
 else:
     print("note: federation workspace not found; cited-path checks skipped (CI mode)")
+
+# ── 7. sprint-close completeness (journal-per-sprint tripwire) ──────
+journal_sprints = set()
+for j in (ROOT / ".agentile" / "docs" / "journals").glob("*.md"):
+    fm = frontmatter(j)
+    if fm and fm.get("sprint"):
+        journal_sprints.add(fm["sprint"])
+
+for sprint_dir in sorted((ROOT / ".agentile" / "sprints" / "completed").glob("*/*/")):
+    rel = sprint_dir.relative_to(ROOT)
+    check((sprint_dir / "RETRO.md").is_file(), f"{rel}: RETRO.md present")
+    sprint_md = sprint_dir / "SPRINT.md"
+    check(sprint_md.is_file(), f"{rel}: SPRINT.md present")
+    if sprint_md.is_file():
+        fm = frontmatter(sprint_md) or {}
+        sprint_id = fm.get("sprint")
+        check(bool(sprint_id), f"{rel}: SPRINT.md frontmatter has sprint id")
+        if sprint_id:
+            check(
+                sprint_id in journal_sprints,
+                f"{rel}: journal exists for sprint {sprint_id}",
+                "minimum one journal per sprint — see agentile:journal",
+            )
 
 # ── report ──────────────────────────────────────────────────────────
 failures = [r for r in results if not r[0]]

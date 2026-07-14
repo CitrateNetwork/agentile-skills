@@ -48,6 +48,12 @@ feature-spec → planset (if program-sized) → test-plan
   → essay (attempted every sprint) · case-study (on break/fix or novelty)
 ```
 
+## Adopting the loop
+
+- **[docs/TRUSTWORTHY_LOOP.md](docs/TRUSTWORTHY_LOOP.md)** — the research-grounded adoption guide: what current evidence says about agentic verification (and its defeat), the escalation ladder, and the day-1 minimal loop.
+- **[docs/tutorials/journal-loop.md](docs/tutorials/journal-loop.md)** — guarantee a journal every sprint with a CI tripwire + `/loop` + `/schedule` (this repo runs the tripwire as harness check class 7, and ships the `/loop` prompt as `.claude/loop.md`).
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — the loop your contribution must pass. Same rules for humans and agents.
+
 ## Repo status
 
 Tier-1 repo in the CitrateNetwork federation. Canonical method source: `citrate-federation/.agentile/rules/CORE_RULES.md` and the `agentile` skeleton repo — this marketplace is the distribution surface; when they diverge, the federation rules win and this repo gets a version bump.
