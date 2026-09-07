@@ -1,0 +1,30 @@
+# Code owners for agentile-skills (AGS-B-001).
+#
+# This repo's product is executable instruction content delivered to third
+# parties through the Claude Code plugin marketplace. Every path that becomes
+# consumer-facing behavior — the skills, the plugin/marketplace manifests, the
+# validation harness, and its integrity locks — requires an owner's review.
+#
+# CODEOWNERS only enforces review when branch protection on `main` is set to
+# "require review from Code Owners". Enabling that protection is a repository
+# setting and must be done by a repo admin (see AGS-B-001 remediation notes);
+# this file is the review-routing half that the protection rule points at.
+
+# Default owner for everything not matched below.
+*                       @saulbuilds
+
+# Executable skill content — the text that runs in a consumer's agent session.
+/plugins/               @saulbuilds
+
+# Distribution manifests — what the marketplace publishes and installs.
+/.claude-plugin/        @saulbuilds
+/plugins/*/.claude-plugin/  @saulbuilds
+
+# Validation harness and integrity locks — the gates themselves.
+/scripts/               @saulbuilds
+/templates.lock         @saulbuilds
+/skills.lock            @saulbuilds
+
+# CI and repository policy.
+/.github/               @saulbuilds
+/CONTRIBUTING.md        @saulbuilds

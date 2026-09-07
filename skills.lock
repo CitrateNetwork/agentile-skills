@@ -1,0 +1,17 @@
+# sha256 of every executable SKILL.md (AGS-B-001 integrity gate).
+# Regenerate ONLY after a reviewed, intentional content change:
+#   scripts/check_skill_integrity.py --update
+# A drift between a SKILL.md and this file fails the validation harness.
+b8f057c0aa4740b624c5b6bfe8426bb7cec0507e9724047fa80c352814d86881  plugins/agentile/skills/agentile/SKILL.md
+ed11188ea414a655559558ee9c905039be9d6dd5bc7c05064d46ada610980a47  plugins/agentile/skills/case-study/SKILL.md
+673573af744bb9b1f71142b59a815992ac07f4cdf8064f251b061a1ee9f19cfb  plugins/agentile/skills/document-pass/SKILL.md
+ca92587fc287751b3f475d229b3bf571984a9e0f861d5c1f66d6dd9459bf6e1d  plugins/agentile/skills/essay/SKILL.md
+3e931324203788ef1e224613d83030af85d5fcc994245c033bc4815c9225d1bc  plugins/agentile/skills/feature-spec/SKILL.md
+adb1d15fe194c1b31d32c2763f8534e9e9b330f9e72431a34ff1b85f4bedf0bc  plugins/agentile/skills/journal/SKILL.md
+a149bba47ec64f78475d8ef7118091cbb66134ebf53d203afc81ce4acfe9257e  plugins/agentile/skills/planset/SKILL.md
+6333674c8de3d73fee4897754f6733830bcfbab4e55592c7ae882557f824e714  plugins/agentile/skills/red-green/SKILL.md
+b4fc251bd3ba6e3b3a6452199fe7f2dafa7a8f61477a51c5f7c9d2e9813dd389  plugins/agentile/skills/refactor-mutate/SKILL.md
+6d7f26141511d2a0cc39c0139e83753afa37e6d2d7f2b63c5a7da71adf213512  plugins/agentile/skills/retro/SKILL.md
+b3819c2bd74ba261444283ca4ab2abfe6c5a36dd5472157650b91e0ebbe9a045  plugins/agentile/skills/test-plan/SKILL.md
+4801e018f452c0788a88ffd93ea0939b9036eca6d49c5dc77af83a9d9ae2ebc6  plugins/citrate-federation/skills/navigate/SKILL.md
+ef9d98cadfaa284ef89207dfe338ff6532ac6f3fac459d17387ce53b4474162d  plugins/citrate-federation/skills/projects/SKILL.md
