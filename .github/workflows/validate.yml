@@ -11,8 +11,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run validation harness
         run: python3 scripts/validate.py
-      - name: Skill-integrity gate (AGS-B-001)
-        # Fails if any executable SKILL.md changed without a matching,
-        # reviewed skills.lock update. Regenerate with
-        # `scripts/check_skill_integrity.py --update` after an intentional edit.
+      - name: Skill-integrity gate (AGS-B-001 / AGS-B-002)
+        # Fails if any distributed file (SKILL.md or a plugin/marketplace
+        # manifest) changed without a matching, reviewed skills.lock update.
+        # Regenerate with `scripts/check_skill_integrity.py --update` after an
+        # intentional edit.
         run: python3 scripts/check_skill_integrity.py
+      - name: Tripwire suite (AGS-B MEDIUM/LOW regressions)
+        # Each tripwire re-introduces a fixed defect and asserts the harness
+        # catches it, so a future edit cannot silently un-fix one.
+        run: python3 scripts/tests/test_tripwires.py

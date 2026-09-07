@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integrity gate over executable skill content (AGS-B-001).
+"""Integrity gate over the distributed payload (AGS-B-001, AGS-B-002).
 
 The product of this repo is instruction text that runs inside a consumer's
 agent session. Before this gate, nothing in the repo hashed, signed, or
@@ -7,12 +7,15 @@ otherwise pinned the 13 `SKILL.md` files: an unreviewed edit to any of them —
 a compromised maintainer token, a poisoned agent push — shipped to every
 installation on the next marketplace refresh with nothing to detect it.
 
-This check pins every `plugins/*/skills/*/SKILL.md` by SHA-256 in
-`skills.lock`. A content change that is not accompanied by a matching,
+This check pins every file that ships to a consumer by SHA-256 in
+`skills.lock`: every `plugins/*/skills/*/SKILL.md` (the executable content)
+AND the distribution manifests `marketplace.json` and each `plugin.json`
+(what the marketplace publishes and installs — AGS-B-002 found these
+unhashed). A content change that is not accompanied by a matching,
 deliberately-regenerated lock entry fails the harness, so a silent edit to
-executable content cannot pass CI. It is deliberately a SEPARATE lock from
+distributed content cannot pass CI. It is deliberately a SEPARATE lock from
 `templates.lock` (which covers the inert `*_TEMPLATE.md` scaffolds): this one
-guards the text that becomes instructions.
+guards the text and metadata that reach a consumer.
 
 Usage:
   scripts/check_skill_integrity.py            # verify (CI); exit 1 on drift
@@ -36,13 +39,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LOCK_PATH = ROOT / "skills.lock"
-SKILL_GLOB = "plugins/*/skills/*/SKILL.md"
+# Every file that ships to a consumer: executable skill content plus the
+# distribution manifests the marketplace publishes and installs (AGS-B-002).
+COVERED_GLOBS = (
+    "plugins/*/skills/*/SKILL.md",
+    ".claude-plugin/marketplace.json",
+    "plugins/*/.claude-plugin/plugin.json",
+)
 
 HEADER = (
-    "# sha256 of every executable SKILL.md (AGS-B-001 integrity gate).\n"
+    "# sha256 of every distributed file (AGS-B-001 / AGS-B-002 integrity gate):\n"
+    "# executable SKILL.md content plus the marketplace/plugin manifests.\n"
     "# Regenerate ONLY after a reviewed, intentional content change:\n"
     "#   scripts/check_skill_integrity.py --update\n"
-    "# A drift between a SKILL.md and this file fails the validation harness.\n"
+    "# A drift between a covered file and this file fails the validation harness.\n"
 )
 
 
@@ -51,7 +61,10 @@ def sha256(path: Path) -> str:
 
 
 def skill_files() -> list[Path]:
-    return sorted(ROOT.glob(SKILL_GLOB))
+    found: list[Path] = []
+    for pattern in COVERED_GLOBS:
+        found.extend(ROOT.glob(pattern))
+    return sorted(set(found))
 
 
 def parse_lock() -> dict[str, str]:
@@ -83,13 +96,13 @@ def main() -> int:
 
     files = skill_files()
     if not files:
-        print("ERROR: no SKILL.md files found; refusing to write an empty lock.",
+        print("ERROR: no distributed files found; refusing to write an empty lock.",
               file=sys.stderr)
         return 2
 
     if args and args[0] == "--update":
         write_lock(files)
-        print(f"skills.lock regenerated over {len(files)} SKILL.md file(s).")
+        print(f"skills.lock regenerated over {len(files)} distributed file(s).")
         return 0
     if args:
         print(f"ERROR: unknown argument {args[0]!r}", file=sys.stderr)
@@ -118,12 +131,12 @@ def main() -> int:
         for p in problems:
             print(f"  - {p}")
         print()
-        print("Executable skill content changed without a matching lock update.")
+        print("Distributed content changed without a matching lock update.")
         print("If the change is intentional and reviewed, regenerate the lock:")
         print("  scripts/check_skill_integrity.py --update")
         return 1
 
-    print(f"OK: {len(files)} SKILL.md file(s) match skills.lock.")
+    print(f"OK: {len(files)} distributed file(s) match skills.lock.")
     return 0
 
 
