@@ -5,7 +5,7 @@ This repo packages the Agentile methodology, and contributions to it run under t
 ## The loop your contribution must pass
 
 1. **Read first (Rule 0).** `CLAUDE.md`, then the skill you're touching, then `docs/TRUSTWORTHY_LOOP.md` if you're new to the method.
-2. **Done is machine-checkable.** `python3 scripts/validate.py` must pass at ≥ the count on `main`. The count is a ratchet: it never goes down. If you add a check, seed a violation and watch it fail before you trust its green (the repo's own harness was built this way; see the sprint records in `.agentile/sprints/completed/`).
+2. **Done is machine-checkable.** `python3 scripts/validate.py` must pass. The check count is a ratchet, and it is enforced, not just described: the harness compares its count against [`checks.baseline`](checks.baseline) and fails if it drops (skipped families are counted, so the denominator does not move with your filesystem). When you deliberately add or remove a check, regenerate the baseline with `python3 scripts/validate.py --update-baseline` in the same commit. If you add a check, seed a violation and watch it fail before you trust its green (the repo's own harness was built this way; see the sprint records in `.agentile/sprints/completed/`).
 3. **Skill edits bump versions.** Any change to a `SKILL.md` bumps the owning `plugin.json` and its `marketplace.json` entry (the harness cross-checks them).
 4. **Templates are vendored, read-only.** `*_TEMPLATE.md` files are copies from the `agentile` skeleton repo. Never edit them in place — propose the change upstream, then re-vendor and regenerate `templates.lock`. The harness fails on in-place edits.
 5. **Method content stays pinned to canon.** Skills describe the method; they don't fork it. Wording, structure, trigger, and reference fixes are welcome. Changes to the method's substance (rules, cadences, protocols) need a decision record and belong upstream first.
@@ -13,7 +13,7 @@ This repo packages the Agentile methodology, and contributions to it run under t
 
 ## What review looks like
 
-Your PR gets CI (the harness) plus an independent review — a fresh-context reviewer (human or agent) that sees the diff and the criteria, not your reasoning. Findings are triaged, not auto-applied: expect some to be accepted and some rejected with written reasons, and feel free to push back the same way. Deterministic checks outrank reviewer opinion in both directions.
+Your PR runs the harness (`scripts/validate.py` plus the `scripts/check_skill_integrity.py` gate) in CI, and review is routed by [`.github/CODEOWNERS`](.github/CODEOWNERS) to a fresh-context reviewer (human or agent) that sees the diff and the criteria, not your reasoning. Two honest caveats about enforcement, because this repo does not claim gates it lacks: CODEOWNERS only *requires* that review once branch protection on `main` is set to "require review from Code Owners" (a repo-admin setting), and the org's GitHub Actions must be able to run for the CI leg to be blocking. Where those repo settings are in place they are the gate; where they are not yet, the harness is still the standard your change is held to and a maintainer applies it by hand. Findings are triaged, not auto-applied: expect some to be accepted and some rejected with written reasons, and feel free to push back the same way. Deterministic checks outrank reviewer opinion in both directions.
 
 ## What gets rejected
 
