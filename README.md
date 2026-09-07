@@ -9,7 +9,7 @@ Agentile is a file-based, git-native method for software built by humans and AI 
 ```
 /plugin marketplace add CitrateNetwork/agentile-skills
 /plugin install agentile@agentile-skills
-/plugin install citrate-federation@agentile-skills   # Citrate federation members only
+/plugin install citrate-federation@agentile-skills   # only useful inside the federation workspace
 ```
 
 Or copy individual skills into `~/.claude/skills/`.

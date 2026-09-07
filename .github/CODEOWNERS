@@ -16,6 +16,12 @@
 # Executable skill content — the text that runs in a consumer's agent session.
 /plugins/               @saulbuilds
 
+# Federation plugin — publishes internal federation shape on a PUBLIC surface
+# (owner-accepted at 0.1.0 in ADR-2026-07-12-public-visibility). Any change
+# here must get a fresh look before it ships, so that "future commits assume a
+# public audience" is a review gate and not only a norm (AGS-B-005).
+/plugins/citrate-federation/  @saulbuilds
+
 # Distribution manifests — what the marketplace publishes and installs.
 /.claude-plugin/        @saulbuilds
 /plugins/*/.claude-plugin/  @saulbuilds

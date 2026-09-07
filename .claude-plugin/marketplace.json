@@ -15,7 +15,7 @@
       "description": "The Agentile methodology: feature specs, plansets, test planning, red-green work packages, refactor + mutation testing, documentation passes, retrospectives, journals, essays, and case studies.",
       "author": {
         "name": "Citrate Network",
-        "url": "https://github.com/saulbuilds"
+        "url": "https://github.com/CitrateNetwork"
       },
       "source": "./plugins/agentile"
     },
@@ -25,7 +25,7 @@
       "description": "Navigating the CitrateNetwork federated repositories: orientation, truth hierarchy, manifest/drift discipline, and running projects across the federation.",
       "author": {
         "name": "Citrate Network",
-        "url": "https://github.com/saulbuilds"
+        "url": "https://github.com/CitrateNetwork"
       },
       "source": "./plugins/citrate-federation"
     }
