@@ -14,6 +14,27 @@ Agentile is a file-based, git-native method for software built by humans and AI 
 
 Or copy individual skills into `~/.claude/skills/`.
 
+### Pinning to a known-good version
+
+`/plugin marketplace add CitrateNetwork/agentile-skills` resolves to the
+**default branch** — a mutable ref. Every installation follows `main`, so a
+push to `main` reaches your agent session on the next marketplace refresh. If
+you want to trust a specific reviewed artifact rather than "whatever is on
+`main` today", pin the marketplace source to a **release tag** and re-point it
+deliberately when you have reviewed the diff:
+
+```
+# Pin to a published release tag (recommended for anything you rely on):
+/plugin marketplace add CitrateNetwork/agentile-skills@vX.Y.Z
+```
+
+Integrity of the executable skill content is enforced in CI by
+`scripts/check_skill_integrity.py`, which pins every `SKILL.md` by SHA-256 in
+[`skills.lock`](skills.lock); a content change that is not accompanied by a
+reviewed lock update fails the harness. Review is routed by
+[`.github/CODEOWNERS`](.github/CODEOWNERS). See the release notes for the
+digest of each tagged version.
+
 ## The `agentile` plugin (the method, portable)
 
 | Skill | Covers |
