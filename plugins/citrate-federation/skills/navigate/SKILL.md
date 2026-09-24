@@ -67,7 +67,7 @@ Tier comes from each repo's `AGENT_ENTRY.md` frontmatter (and the manifest). **T
 - **Identity & wallets:** `citrate-identity` (auth.citrate.ai OIDC), `citrate-native` (T1 desktop), `citrate-wallet-extension` (T1), `citrate-core` (T1 full-node desktop client + app launcher)
 - **Compute & agents:** `citrate-inference-gateway`, `citrate-compute-pool`, `citrate-agent-runtime`, `nist-agent`, `citrate-studio` (all T1)
 - **Memory & comms:** `citrate-memories` ("git for agents" DAG, MCP-served), `citrate-comms` (T1 E2E workspace)
-- **Apps & surfaces:** `citrate-explorer` (CitrateScan), `citrate-dashboard` (T1), `citrate-buyer-webapp` (T1), `citrate-alf-web` (T1 ALF portal), `citrate-boeing-shell` (T1), `citrate-learning-center` (T1), `citrate-landing` (T2), `citrate-dataroom` (T1)
+- **Apps & surfaces:** `citrate-explorer` (CitrateScan), `citrate-dashboard` (T1), `citrate-buyer-webapp` (T1), `citrate-alf-web` (T1 ALF portal), `citrate-defense_prime-shell` (T1), `citrate-learning-center` (T1), `citrate-landing` (T2), `citrate-dataroom` (T1)
 - **SDKs:** `citrate-sdk-js`, `citrate-sdk-python`, `citrate-sdk-marketplace` (all T1)
 - **Security & audit:** `citrate-security` (audit control plane, Agentile-Audit standard), `hermes-audit-2026-07`
 - **Docs & business:** `citrate-docs` (T3, Atlas), `citrate-commercial`, `citrate-compliance` (T3)

@@ -84,4 +84,4 @@ Tier-1 repo in the CitrateNetwork federation. Canonical method source: `citrate-
 MIT
 ## Open source and access
 
-This repository is public. Citrate open sources the whole chain and application layer before mainnet, in January 2027; until then most of the core is access-by-request, as a security practice, not secrecy. Approved contributors receive privileged access to every repository except the private repos of clients and employees. Request access at [citrate.ai/contact](https://citrate.ai/contact) or email `hello@citrate.ai`. Full policy: <https://docs.citrate.ai/start/open-source>.
+This repository is public. Citrate is open-core: all launch repositories are public today at [github.com/CitrateNetwork](https://github.com/CitrateNetwork). Infrastructure is licensed under Apache-2.0; the application layer under the Business Source License 1.1 (BUSL-1.1), which converts to Apache-2.0 on its Change Date. Citrate Inc. is the licensor. The private repos of clients and employees stay closed. Full policy: <https://docs.citrate.ai/start/open-source>.
