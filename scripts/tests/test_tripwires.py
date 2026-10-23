@@ -124,6 +124,40 @@ def main() -> int:
         expect(r.returncode == 1 and "ratchet" in r.stdout,
                "AGS-B-007: check count below baseline fails (ratchet enforced)")
 
+        # ── an unreviewed SKILL.md edit fails the integrity gate ─
+        repo = fresh_copy(tmp / "b001edit")
+        sf = repo / "plugins/agentile/skills/journal/SKILL.md"
+        sf.write_text(sf.read_text(encoding="utf-8") + "\nOne more line.\n",
+                      encoding="utf-8")
+        r = run(repo, "scripts/check_skill_integrity.py")
+        expect(r.returncode == 1 and "SKILL.md" in r.stdout,
+               "integrity: edited SKILL.md without a lock update fails the integrity gate")
+
+        # ── a new skill that is not in skills.lock fails too ──
+        repo = fresh_copy(tmp / "b001new")
+        nd = repo / "plugins/agentile/skills/zz-unlocked"
+        nd.mkdir()
+        (nd / "SKILL.md").write_text("---\nname: zz-unlocked\n---\nbody\n",
+                                     encoding="utf-8")
+        r = run(repo, "scripts/check_skill_integrity.py")
+        expect(r.returncode == 1 and "zz-unlocked" in r.stdout,
+               "integrity: an unlocked new SKILL.md fails the integrity gate")
+
+        # ── review routing covers what ships ─────
+        owners = (ROOT / ".github/CODEOWNERS").read_text(encoding="utf-8")
+        routed = {ln.split()[0] for ln in owners.splitlines()
+                  if ln.strip() and not ln.lstrip().startswith("#")}
+        for path in ("/plugins/", "/plugins/citrate-federation/", "/.claude-plugin/",
+                     "/scripts/", "/skills.lock", "/templates.lock", "/.github/"):
+            expect(path in routed, f"review routing: CODEOWNERS routes review for {path}")
+
+        # ── README install text is honest ────────
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        expect("members only" not in readme.lower(),
+               "install docs: README does not bill a world-installable plugin as members-only")
+        expect("agentile-skills@v" in readme,
+               "install docs: README documents pinning the marketplace to a release tag")
+
     print()
     if FAILS:
         print(f"{len(FAILS)} tripwire(s) did not bite:")
